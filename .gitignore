@@ -75,3 +75,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
+
+
+# 其他剔除内容
+
+# 忽略 Assets 目录下的 "美术资源文件/标志信息" 文件夹
+/Assets/美术资源文件/标志信息/
