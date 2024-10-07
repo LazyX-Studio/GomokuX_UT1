@@ -184,9 +184,14 @@ MonoBehaviour:
   ChessboardMapSizeX: 15
   ChessboardMapSizeY: 15
   ChessboardGameObject: {fileID: 1082354243}
+  gomokuCellStorageStandard: {fileID: 1667665645}
   playerCameraGameObject: {fileID: 1071462254}
   playerCameraCamera: {fileID: 1071462256}
   backgroundPlateGameObject: {fileID: 817882341}
+  playerNumber: 0
+  playerQuantity: 0
+  playerQuit: 
+  playerRegistrationForm: {fileID: 112894907}
   PlayerControl_Lock: 0
 --- !u!114 &112894907
 MonoBehaviour:
@@ -203,6 +208,7 @@ MonoBehaviour:
   PlayerName: []
   PlayerGomoku_SpriteAddress: []
   PlayerGomoku_SpriteColor: []
+  PlayerGomoku_Sprite: []
 --- !u!114 &112894908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +228,7 @@ MonoBehaviour:
   PlayerGomoku_SpriteColor:
   - {r: 1, g: 1, b: 1, a: 0}
   playerRegistrationForm_Normal: {fileID: 112894907}
+  MapController_StandardChessboardFunctionalityTest: {fileID: 112894906}
 --- !u!1 &817882341
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,10 +563,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1667665644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1667665646}
+  - component: {fileID: 1667665645}
+  m_Layer: 0
+  m_Name: data storage game object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1667665645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667665644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d866ff6767f4e93971df345863eb7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1667665646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667665644}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2499691, y: 2.3460577, z: -0.15645963}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1667665646}
   - {fileID: 1071462257}
   - {fileID: 1621496366}
   - {fileID: 112894905}

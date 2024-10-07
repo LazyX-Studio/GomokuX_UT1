@@ -9,6 +9,8 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
 {
     private CellInteractionHandler cellInteractionHandler; // 单元格子交互处理函数库
 
+    
+
     // 棋盘大小设置
     public int ChessboardMapSizeX;
     public int ChessboardMapSizeY;
@@ -18,12 +20,21 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
     
     public GameObject ChessboardGameObject; // 棋盘对象
     
+    public GomokuCellStorage_standard gomokuCellStorageStandard; // 棋盘储存
+    
     // 相机对象
     public GameObject playerCameraGameObject;
     public Camera playerCameraCamera;
     
     // 背景板对象
     public GameObject backgroundPlateGameObject;
+    
+    // 玩家信息
+    public int playerNumber; // 轮到哪位小可爱了？
+    public int playerQuantity; // 玩家数量
+    public int[] playerQuit; // 玩家离开，类似桶排序的数组原理
+
+    public playerRegistrationForm_Normal playerRegistrationForm; // 玩家注册表
     
     // 权限锁
 
@@ -32,7 +43,7 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initialize_Main();
+        // initialize_Main();
     }
 
     // Update is called once per frame
@@ -68,7 +79,50 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
 
                         if (CellGameObjectTag == "Cell 标准型号")
                         {
+                            PlayerControl_Lock = false; // 先上锁再说OwO/
                             
+                            // 查询位置
+                            float PosX = CellGameObject.GetComponent<cellCodeMain_standard>().PosX;
+                            float PosY = CellGameObject.GetComponent<cellCodeMain_standard>().PosY;
+                            
+                            // 检测是否被占位
+                            if (gomokuCellStorageStandard.GomokuMap[(int)PosX, (int)PosY] == 0)
+                            {
+                                // 设置占位
+                                gomokuCellStorageStandard.GomokuMap[(int)PosX, (int)PosY] = playerNumber;
+                                
+                                // 传递方格对象信息
+                                                                                                         
+                                CellGameObject.GetComponent<cellCodeMain_standard>().updateStatus(playerNumber);
+                                
+                                // 下一个玩家来
+                                int n = playerNumber;
+                                if (n == playerQuantity)
+                                {
+                                    n = 0;
+                                }
+
+                                int m = 0;
+                                
+                                while (playerQuit[n] == 0)
+                                {
+                                    n++;
+                                    m++;
+                                    if (n == playerQuantity)
+                                    {
+                                        n = 0;
+                                    }
+
+                                    if (m > playerQuantity + 10)
+                                        break;
+                                }
+
+                                playerNumber = n + 1;
+                            }
+                            
+                            
+                            
+                            PlayerControl_Lock = true; // 解锁
                         }
                         else
                         {
@@ -87,8 +141,9 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
     
     
     // 总初始化
-    private async void initialize_Main()
+    public async void initialize_Main()
     {
+        PlayerControl_Lock = false;
         initialize_LibraryLoading();
         
         // 背景板初始化
@@ -108,6 +163,33 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
         
         playerCameraCamera.orthographicSize = Mathf.Min(ChessboardMapSizeX, ChessboardMapSizeY) / 2f;
         
+        
+        int i, j;
+        i = j = 0;
+        
+        // 初始化地图
+        gomokuCellStorageStandard.GomokuMap = new int[ChessboardMapSizeX, ChessboardMapSizeY];
+        
+        for (; i < gomokuCellStorageStandard.GomokuMap.GetLength(0); i++) // 遍历行
+        {
+            for (; j < gomokuCellStorageStandard.GomokuMap.GetLength(1); j++) // 遍历列
+            {
+                gomokuCellStorageStandard.GomokuMap[i, j] = 0; // 将每个元素设置为 0
+            }
+        }
+        
+        // 初始化玩家相关信息
+        playerNumber = 1;
+        playerQuantity = playerRegistrationForm.PlayerName.Length;
+        playerQuit = new int[playerQuantity];
+
+        i = 0;
+        while (i < playerQuit.Length)
+        {
+            playerQuit[i] = 0;
+            i++;
+        }
+        
         // 棋格加载
         
         // 初始化棋盘格数组
@@ -117,9 +199,9 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
         // 加载格子对象
         GameObject gridPrefab = await ChessboardCell_LoadObjectAsync("Assets/格子/标准格子.prefab");
         Vector3 gridPosition;
-
-        int i, j;
-        i = j = 0;
+        
+        
+        i = 0;
         while (i < ChessboardMapSizeX)
         {
             j = 0;
@@ -134,11 +216,14 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
                 // 设置相对父级的坐标
                 gridPosition = new Vector3(j, -i, 0);
                 gridCell.transform.localPosition = gridPosition;
+                
+                // 载入对象
+                gridCell.GetComponent<cellCodeMain_standard>().playerRegistrationForm = playerRegistrationForm;
 
                 // 存储到数组
                 ChessboardCellData[i, j] = gridCell;
                 
-                Debug.Log($"Grid cell instantiated and placed at: {gridPosition}");
+                // Debug.Log($"Grid cell instantiated and placed at: {gridPosition}");
                 
                 // 批量更改对象
                 
@@ -151,7 +236,22 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
         }
         
         
+        // 加载玩家精灵对象
+        playerRegistrationForm.PlayerGomoku_Sprite = new Sprite[playerQuantity];
+        i = 0;
+        while (i < playerQuantity)
+        {
+            Sprite gridSprits = await PlayerSprite_LoadObjectAsync(
+                playerRegistrationForm.PlayerGomoku_SpriteAddress[i]
+                );
 
+            playerRegistrationForm.PlayerGomoku_Sprite[i] = gridSprits;
+
+            i++;
+        }
+        
+        
+        PlayerControl_Lock = true;
     }
     
     // 代码库初始化
@@ -192,6 +292,27 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
         else
         {
             Debug.LogError("Failed to load object: " + objectAddress);
+            return null;
+        }
+    }
+    
+    // 异步加载，精灵
+    private async Task<Sprite> PlayerSprite_LoadObjectAsync(string objectAddress)
+    {
+        // 异步加载 Sprite 对象
+        AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(objectAddress);
+    
+        // 等待加载完成
+        await handle.Task;
+
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            // 返回加载的 Sprite 对象
+            return handle.Result;
+        }
+        else
+        {
+            Debug.LogError("Failed to load sprite: " + objectAddress);
             return null;
         }
     }

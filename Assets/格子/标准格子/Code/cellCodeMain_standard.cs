@@ -15,6 +15,8 @@ public class cellCodeMain_standard : MonoBehaviour
     public GameObject chessPieceGameObject; // 精灵对象
     public string chessPieceSprite_location; // 精灵地址，null为无精灵
     
+    public playerRegistrationForm_Normal playerRegistrationForm; // 玩家注册表
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,13 @@ public class cellCodeMain_standard : MonoBehaviour
     {
         
     }
+    
+    // 初始化
+    public void initialize_Main()
+    {
+        
+    }
+    
 
     // 相对位置计算
     void calculate_CellPosition()
@@ -35,6 +44,15 @@ public class cellCodeMain_standard : MonoBehaviour
 
         PosX = (int)relativePosition.x;
         PosY = -(int)relativePosition.y;
+    }
+    
+    
+    
+    // 格子状态更新
+    public void updateStatus(int playerNumber)
+    {
+        chessPieceGameObject.GetComponent<SpriteRenderer>().sprite =
+            playerRegistrationForm.PlayerGomoku_Sprite[playerNumber - 1];
     }
     
     
@@ -61,5 +79,4 @@ public class cellCodeMain_standard : MonoBehaviour
             }
         };
     }
-    
 }

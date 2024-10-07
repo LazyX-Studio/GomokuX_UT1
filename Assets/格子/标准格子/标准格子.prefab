@@ -286,6 +286,7 @@ MonoBehaviour:
   PosY: 0
   chessPieceGameObject: {fileID: 1903308541996555955}
   chessPieceSprite_location: 
+  playerRegistrationForm: {fileID: 0}
 --- !u!114 &5121467369308752670
 MonoBehaviour:
   m_ObjectHideFlags: 0

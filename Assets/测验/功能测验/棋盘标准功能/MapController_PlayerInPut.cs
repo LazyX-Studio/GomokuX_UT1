@@ -10,6 +10,8 @@ public class MapController_PlayerInPut : MonoBehaviour
     
     // 交互制库
     public playerRegistrationForm_Normal playerRegistrationForm_Normal;
+
+    public MapController_StandardChessboardFunctionalityTest MapController_StandardChessboardFunctionalityTest;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,8 @@ public class MapController_PlayerInPut : MonoBehaviour
         playerRegistrationForm_Normal.PlayerName = PlayerName;
         playerRegistrationForm_Normal.PlayerGomoku_SpriteAddress = PlayerGomoku_SpriteAddress;
         playerRegistrationForm_Normal.PlayerGomoku_SpriteColor = PlayerGomoku_SpriteColor;
+
+        MapController_StandardChessboardFunctionalityTest.initialize_Main();
     }
 
     // Update is called once per frame
