@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GomokuCellStorage_standard : MonoBehaviour
+public class GomokuCellStorage_Standard : MonoBehaviour
 {
     public int[,] GomokuMap; // 存储地图
 
-    public int[,,] GomokuMapInformation; // 数据储存地图
+    public int[,,] GomokuMapInformation; // 提示储存地图
     /*
      * 0层 5连 标值>0,标-1为默认,其他标0
      * 1层 活4 标值>0,标-1为默认,其他标0

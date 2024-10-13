@@ -10,13 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: "\u68CB\u5B50"
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: "\u68CB\u5B50"
   m_Data:
     m_SerializedData: []
-  m_GUID: a28e8324c51a544d694cbb53768ce3b8
+  m_GUID: 65b5bedf6380645a6afc016e67354d0f
   m_SerializeEntries:
+  - m_GUID: 2e07d94ba0d8a47b1a0ad065d134b6ba
+    m_Address: "Assets/\u7F8E\u672F\u8D44\u6E90/\u68CB\u5B50/\u68CB\u5B50\u56FE\u7247/\u7A7A\u5FC3\u5706\u65B9.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b0608529889547e68c4aa3321c65e0f
+    m_Address: "Assets/\u7F8E\u672F\u8D44\u6E90/\u68CB\u5B50/\u68CB\u5B50\u56FE\u7247/X\u7B26\u53F7.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bd083407f37e84c9eb26d051395832d3
     m_Address: "Assets/\u7F8E\u672F\u8D44\u6E90/\u68CB\u5B50/\u68CB\u5B50\u56FE\u7247/\u7A7A\u5FC3\u5706.png"
     m_ReadOnly: 0
@@ -26,5 +36,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 3ba3b3ead2eac49f38283a82ead0048f, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 300668aaefcbd43d6ae97b7f17aa6506, type: 2}
-    - {fileID: 11400000, guid: da66602bb4a8d49efb1c6adc34a6ef3a, type: 2}
+    - {fileID: 11400000, guid: 68a7cde0c994f4bee832332018a28ed8, type: 2}
+    - {fileID: 11400000, guid: d3fbd99937e46418aba43fb44d1b97ed, type: 2}

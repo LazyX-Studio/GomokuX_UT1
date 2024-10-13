@@ -9,18 +9,19 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
 {
     private CellInteractionHandler cellInteractionHandler; // 单元格子交互处理函数库
 
-    
+    public GomokuCalculation_Standard GomokuCalculation_Standard; // 计算块
 
     // 棋盘大小设置
     public int ChessboardMapSizeX;
     public int ChessboardMapSizeY;
 
     public GameObject[,] ChessboardCellData; // 棋盘格子存储
+    public cellCodeMain_standard[,] ChessboardCellData_Code; // 棋盘格子代码调用
     public GameObject[,] ChessboardCellData_frame; // 棋盘格子边框储存
     
     public GameObject ChessboardGameObject; // 棋盘对象
     
-    public GomokuCellStorage_standard gomokuCellStorageStandard; // 棋盘储存
+    public GomokuCellStorage_Standard gomokuCellStorageStandard; // 棋盘储存
     
     // 相机对象
     public GameObject playerCameraGameObject;
@@ -82,14 +83,17 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
                             PlayerControl_Lock = false; // 先上锁再说OwO/
                             
                             // 查询位置
-                            float PosX = CellGameObject.GetComponent<cellCodeMain_standard>().PosX;
-                            float PosY = CellGameObject.GetComponent<cellCodeMain_standard>().PosY;
+                            int PosX = (int)CellGameObject.GetComponent<cellCodeMain_standard>().PosX;
+                            int PosY = (int)CellGameObject.GetComponent<cellCodeMain_standard>().PosY;
                             
                             // 检测是否被占位
-                            if (gomokuCellStorageStandard.GomokuMap[(int)PosX, (int)PosY] == 0)
+                            if (gomokuCellStorageStandard.GomokuMap[PosX, PosY] == 0)
                             {
                                 // 设置占位
-                                gomokuCellStorageStandard.GomokuMap[(int)PosX, (int)PosY] = playerNumber;
+                                gomokuCellStorageStandard.GomokuMap[PosX, PosY] = playerNumber;
+                                
+                                // 计算判断
+                                GomokuCalculation_Standard.compute_5companies(new Vector2(PosX, PosY));
                                 
                                 // 传递方格对象信息
                                                                                                          
@@ -104,13 +108,14 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
 
                                 int m = 0;
                                 
-                                while (playerQuit[n] == 0)
+                                while (playerQuit[n] != 0)
                                 {
                                     n++;
                                     m++;
                                     if (n == playerQuantity)
                                     {
                                         n = 0;
+                                        Debug.Log(playerQuantity);
                                     }
 
                                     if (m > playerQuantity + 10)
@@ -170,13 +175,9 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
         // 初始化地图
         gomokuCellStorageStandard.GomokuMap = new int[ChessboardMapSizeX, ChessboardMapSizeY];
         
-        for (; i < gomokuCellStorageStandard.GomokuMap.GetLength(0); i++) // 遍历行
-        {
-            for (; j < gomokuCellStorageStandard.GomokuMap.GetLength(1); j++) // 遍历列
-            {
-                gomokuCellStorageStandard.GomokuMap[i, j] = 0; // 将每个元素设置为 0
-            }
-        }
+        // 初始化提示地图
+        
+        gomokuCellStorageStandard.GomokuMapInformation = new int[ChessboardMapSizeX, ChessboardMapSizeY,1];
         
         // 初始化玩家相关信息
         playerNumber = 1;
@@ -194,6 +195,7 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
         
         // 初始化棋盘格数组
         ChessboardCellData = new GameObject[ChessboardMapSizeX, ChessboardMapSizeY];
+        ChessboardCellData_Code = new cellCodeMain_standard[ChessboardMapSizeX, ChessboardMapSizeY];
         ChessboardCellData_frame = new GameObject[ChessboardMapSizeX, ChessboardMapSizeY];
         
         // 加载格子对象
@@ -222,6 +224,7 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
 
                 // 存储到数组
                 ChessboardCellData[i, j] = gridCell;
+                ChessboardCellData_Code[i, j] = gridCell.GetComponent<cellCodeMain_standard>();
                 
                 // Debug.Log($"Grid cell instantiated and placed at: {gridPosition}");
                 
@@ -252,6 +255,10 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
         
         
         PlayerControl_Lock = true;
+        
+        // 测验
+        // Debug.Log(ChessboardCellData_Code[2, 2]);
+        ChessboardCellData_Code[2,2].LightOpen_prompt(0);
     }
     
     // 代码库初始化

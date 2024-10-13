@@ -286,6 +286,7 @@ MonoBehaviour:
   PosY: 0
   chessPieceGameObject: {fileID: 1903308541996555955}
   chessPieceSprite_location: 
+  LightPrompt: {fileID: 7732697757579475043}
   playerRegistrationForm: {fileID: 0}
 --- !u!114 &5121467369308752670
 MonoBehaviour:
@@ -402,7 +403,7 @@ GameObject:
   - component: {fileID: 8485577216094483602}
   - component: {fileID: 7732697757579475043}
   m_Layer: 0
-  m_Name: "\u683C\u5B50\u53D1\u5149"
+  m_Name: "\u63D0\u793A\u5149"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

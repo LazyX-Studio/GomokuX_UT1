@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
+using UnityEngine.Rendering.Universal;
+
 public class cellCodeMain_standard : MonoBehaviour
 {
     // 位置参数
@@ -14,6 +16,8 @@ public class cellCodeMain_standard : MonoBehaviour
     // 棋子精灵参数
     public GameObject chessPieceGameObject; // 精灵对象
     public string chessPieceSprite_location; // 精灵地址，null为无精灵
+
+    public Light2D LightPrompt; // 提示光
     
     public playerRegistrationForm_Normal playerRegistrationForm; // 玩家注册表
     
@@ -48,7 +52,7 @@ public class cellCodeMain_standard : MonoBehaviour
     
     
     
-    // 格子状态更新
+    // 格子棋子显示状态更新
     public void updateStatus(int playerNumber)
     {
         chessPieceGameObject.GetComponent<SpriteRenderer>().sprite =
@@ -57,6 +61,11 @@ public class cellCodeMain_standard : MonoBehaviour
     
     
     
+    // 提示光（固定类型）
+    public void LightOpen_prompt(int PromptNumber)
+    {
+        LightPrompt.intensity = 1.0f;
+    }
     
     // 精灵图片刷新（内置备用代码）
     // 函数：加载指定地址的精灵并应用到对象的 SpriteRenderer
