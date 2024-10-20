@@ -48,6 +48,8 @@ public class GomokuCalculation_Standard : MonoBehaviour
         {
             if (piecesAroundNumber[i] + piecesAroundNumber[i + 4] >= 4)
             {
+                // Debug.Log("5连" + piecesNumber);
+                
                 // 写入5连信息
 
                 GomokuCellStorage.GomokuMapInformation[(int)ChessPiece_location.x, (int)ChessPiece_location.y, 0] =
@@ -115,21 +117,28 @@ public class GomokuCalculation_Standard : MonoBehaviour
 
             int j = 0;
 
-            while (GomokuMap[x += (int)direction_xy[i].x, y += (int)direction_xy[i].y] == piecesNumber)
+            try
             {
-                int maxX, maxY;
-                maxX = GomokuMap.GetLength(0);
-                maxY = GomokuMap.GetLength(1);
-
-                if (x + (int)direction_xy[i].x > maxX && x + (int)direction_xy[i].x < 0
-                                                      && y + (int)direction_xy[i].y > maxY &&
-                                                      y + (int)direction_xy[i].y < 0)
+                while (GomokuMap[x += (int)direction_xy[i].x, y += (int)direction_xy[i].y] == piecesNumber)
                 {
-                    break;
+                    int maxX, maxY;
+                    maxX = GomokuMap.GetLength(0);
+                    maxY = GomokuMap.GetLength(1);
+
+                    if (x + (int)direction_xy[i].x > maxX && x + (int)direction_xy[i].x < 0
+                                                          && y + (int)direction_xy[i].y > maxY &&
+                                                          y + (int)direction_xy[i].y < 0)
+                    {
+                        break;
+                    }
+
+
+                    j++;
                 }
+            }
+            catch
+            {
                 
-                
-                j++;
             }
 
             piecesAroundNumber[i] = j;

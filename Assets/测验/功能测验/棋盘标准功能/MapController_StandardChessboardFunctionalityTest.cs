@@ -125,7 +125,26 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
                                 playerNumber = n + 1;
                             }
                             
-                            
+                            // 测验 循环测试
+                            int i, j;
+                            i = 0;
+                            while (i < ChessboardMapSizeX)
+                            {
+                                j = 0;
+                                while (j < ChessboardMapSizeY)
+                                {
+                                    ChessboardCellData_Code[j, i].LightExamine_5Companies(gomokuCellStorageStandard.GomokuMapInformation[i,j,0]);
+
+                                    if (gomokuCellStorageStandard.GomokuMapInformation[i, j, 0] != 0)
+                                    {
+                                        // Debug.Log(gomokuCellStorageStandard.GomokuMapInformation[i,j,0] + " " + gomokuCellStorageStandard.GomokuMap[i,j]);
+                                        // Debug.Log($"i{i}j{j},"+ ChessboardCellData_Code[i, j].PosX + " " + ChessboardCellData_Code[i, j].PosY);
+                                    }
+
+                                    j++;
+                                }
+                                i++;
+                            }
                             
                             PlayerControl_Lock = true; // 解锁
                         }

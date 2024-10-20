@@ -66,6 +66,20 @@ public class cellCodeMain_standard : MonoBehaviour
     {
         LightPrompt.intensity = 1.0f;
     }
+
+
+
+    // 5连提示光检查
+    public void LightExamine_5Companies(int Number)
+    {
+        if (Number != 0)
+        {
+            LightPrompt.intensity = 3.0f;
+            LightPrompt.color = Color.red;
+            
+            // Debug.Log(PosX + " " + PosY);
+        }
+    }
     
     // 精灵图片刷新（内置备用代码）
     // 函数：加载指定地址的精灵并应用到对象的 SpriteRenderer

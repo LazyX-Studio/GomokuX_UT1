@@ -225,8 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerName:
   - "\u6D4B\u8BD5\u4EBA\u5458A"
-  - "\u6D4B\u8BD5\u4EBA\u5458B"
-  - "\u6D4B\u8BD5\u4EBA\u5458C"
   PlayerGomoku_SpriteAddress:
   - "Assets/\u7F8E\u672F\u8D44\u6E90/\u68CB\u5B50/\u68CB\u5B50\u56FE\u7247/\u7A7A\u5FC3\u5706.png"
   - "Assets/\u7F8E\u672F\u8D44\u6E90/\u68CB\u5B50/\u68CB\u5B50\u56FE\u7247/\u7A7A\u5FC3\u5706\u65B9.png"
@@ -546,7 +544,7 @@ MonoBehaviour:
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
+  m_OverlapOperation: 1
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
@@ -580,7 +578,7 @@ Transform:
   m_GameObject: {fileID: 1621496364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.220304, y: -10.518643, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
