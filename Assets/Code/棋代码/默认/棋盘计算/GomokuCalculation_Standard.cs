@@ -36,7 +36,7 @@ public class GomokuCalculation_Standard : MonoBehaviour
         
     }
 
-    public void compute_5companies(Vector2 ChessPiece_location) // 5连判断计算
+    public void compute_5companies(Vector2 ChessPiece_location,ref int[] playerQuit) // 5连判断计算
     {
         compute_MatchingAdjacentPieces(ChessPiece_location);
 
@@ -81,6 +81,9 @@ public class GomokuCalculation_Standard : MonoBehaviour
                         piecesNumber;
                     j++;
                 }
+                
+                // 请出玩家
+                playerQuit[piecesNumber - 1] = 1;
             }
             
             i++;

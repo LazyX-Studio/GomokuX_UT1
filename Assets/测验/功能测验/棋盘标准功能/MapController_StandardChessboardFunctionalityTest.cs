@@ -93,7 +93,7 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
                                 gomokuCellStorageStandard.GomokuMap[PosX, PosY] = playerNumber;
                                 
                                 // 计算判断
-                                GomokuCalculation_Standard.compute_5companies(new Vector2(PosX, PosY));
+                                GomokuCalculation_Standard.compute_5companies(new Vector2(PosX, PosY),ref playerQuit);
                                 
                                 // 传递方格对象信息
                                                                                                          
@@ -277,7 +277,7 @@ public class MapController_StandardChessboardFunctionalityTest : MonoBehaviour
         
         // 测验
         // Debug.Log(ChessboardCellData_Code[2, 2]);
-        ChessboardCellData_Code[2,2].LightOpen_prompt(0);
+        // ChessboardCellData_Code[2,2].LightOpen_prompt(0);
     }
     
     // 代码库初始化

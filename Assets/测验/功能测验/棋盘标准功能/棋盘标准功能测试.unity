@@ -225,6 +225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerName:
   - "\u6D4B\u8BD5\u4EBA\u5458A"
+  - "\u6D4B\u8BD5\u4EBA\u5458B"
+  - "\u6D4B\u8BD5\u4EBA\u5458C"
   PlayerGomoku_SpriteAddress:
   - "Assets/\u7F8E\u672F\u8D44\u6E90/\u68CB\u5B50/\u68CB\u5B50\u56FE\u7247/\u7A7A\u5FC3\u5706.png"
   - "Assets/\u7F8E\u672F\u8D44\u6E90/\u68CB\u5B50/\u68CB\u5B50\u56FE\u7247/\u7A7A\u5FC3\u5706\u65B9.png"
